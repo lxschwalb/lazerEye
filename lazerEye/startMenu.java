@@ -12,7 +12,7 @@ public class startMenu{
     StdDraw.setCanvasSize(1000,900);
     StdDraw.setXscale(0, 10);
     StdDraw.setYscale(0, 10);
-    int level=1;
+    int level=0;
     Clip wav=audio.loop("medly.wav");
     StdDraw.setPenRadius(0.01);
     StdDraw.setFont(new Font("Serif", Font.BOLD, 36));
@@ -24,7 +24,7 @@ public class startMenu{
       
       StdDraw.picture(5, 5, "background.jpg", 10, 10);
       StdDraw.setPenColor(StdDraw.BLACK);
- 
+      
       if(level==-1)
         StdDraw.text(5, 7, "Bossfight");
       else if(level==0)
@@ -35,7 +35,7 @@ public class startMenu{
       StdDraw.text(8, 5, "S for scores");
       StdDraw.text(2, 5, "C for controls");
       
-      if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){
+      if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT) && level<30){
         level++;
         StdDraw.show(100);}
       if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT) && level>-1){
@@ -50,8 +50,9 @@ public class startMenu{
       
       if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){
         score[0]=0;
-        //normal mode
+        
         if (level>0){
+          //normal mode
           score[0]=0;
           do{            
             score[0]=score[0]+lazerEye.level(level);
@@ -59,9 +60,10 @@ public class startMenu{
           }while(!GO);       
           audio.stop(wav);
           display.gameOver();
-        } else if(level==0){
+          
+        }else if(level==0){
           //campaign
-            display.story();          
+          display.story();          
           for(int i=1; i<=10;i++){
             score[0] = score[0]+lazerEye.level(i);
             if (GO){
@@ -71,9 +73,12 @@ public class startMenu{
             }
           }
           if(!GO) bossFight(wav);
-        } 
-         else if(level==-1)
-           bossFight(wav);
+        }
+        
+        else if(level==-1)
+          //bossfight
+          bossFight(wav);
+        
         display.sortScores(score);
       }
       GO=false;
@@ -82,15 +87,15 @@ public class startMenu{
   }
   
   private static void bossFight(Clip wav){
-            
-           audio.stop(wav);
-           wav=audio.loop("boss.wav");
-           display.bossStory();
-            score[0] += lazerEye.BossFight();
-            audio.stop(wav);
-            if (GO)              
-              display.gameOver();            
-            else
-              display.victory();
+    
+    audio.stop(wav);
+    wav=audio.loop("boss.wav");
+    display.bossStory();
+    score[0] += lazerEye.BossFight();
+    audio.stop(wav);
+    if (GO)              
+      display.gameOver();            
+    else
+      display.victory();
   }
 }

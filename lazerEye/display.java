@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 public class display{
   
   public static void gameOver(){
-    audio.play("gover.mp3");
+    audio.play("game over.wav");
     StdDraw.clear(StdDraw.BLACK);
     StdDraw.picture(5, 7.5, "octopi.png", 7, 7);
     for(int i=0; i<255; i++){
@@ -14,7 +14,7 @@ public class display{
   }
   
   public static void victory(){
-    audio.play("win.mp3");
+    audio.play("win.wav");
     StdDraw.clear(StdDraw.BLACK);
     for(int i=0; i<255; i++){
       StdDraw.setPenColor(i, i, i);
@@ -33,7 +33,6 @@ public class display{
       while(pause)
       {
         StdDraw.textLeft(0.5, 9.7, "paused");
-        
         
         if(level==0)
           StdDraw.textLeft(0.5, 9.3, "Boss Fight");
@@ -56,6 +55,7 @@ public class display{
       }
     }
   }
+  
   public static boolean crash(double[] A, double[] B, double R, boolean exist){
     double r=Math.sqrt(Math.pow(A[0]-B[0],2)+Math.pow(A[1]-B[1],2));
     if(r<R && exist){
@@ -131,7 +131,7 @@ public class display{
     StdDraw.text(5, 6, "Move with Z and X");
     StdDraw.text(5, 5, "Shoot laser with C if power is full");
     StdDraw.text(5, 4, "Shoot bullets with Spacebar");
-    StdDraw.text(5, 3, "Curve bullets with Left Shift");
+    StdDraw.text(5, 3, "While pressing SHIFT Curve bullets with A and S");
   }
   
   public static void sortScores(int[] scores){

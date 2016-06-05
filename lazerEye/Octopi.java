@@ -5,13 +5,13 @@ public class Octopi extends Enemies{
   public double[] drop={-2, -2};
   
   public static void initialise(double height, double level){
-  h=height;
-  v=Math.pow(1.1, level)*0.1;
+    h=height;
+    v=Math.pow(1.1, level)*0.1;
   }
   
   public Octopi(double x){
     coord[0]=x;
-    }
+  }
   
   public void draw(){
     if(dead==false)
@@ -34,16 +34,16 @@ public class Octopi extends Enemies{
     if(turn) v=-v;
     turn=false;
   }
-     
-   public void drop(double p){
-     if(drop[1]<-2 && Math.random()<p && !dead){
-       drop[0]=coord[0];
-       drop[1]=coord[1];
-     }
-     
-     StdDraw.setPenColor(StdDraw.BLUE);
-     StdDraw.filledCircle( drop[0], drop[1], 0.1);
-     
-     drop[1]= drop[1]-0.3;
-   }
-   }
+  
+  public void drop(double p){
+    if(drop[1]<-2 && Math.random()<p && !dead){
+      drop[0]=coord[0];
+      drop[1]=coord[1];
+    }
+    
+    StdDraw.setPenColor(StdDraw.BLUE);
+    StdDraw.filledCircle( drop[0], drop[1], 0.1);
+    
+    drop[1]= drop[1]-0.3;
+  }
+}
