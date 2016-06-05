@@ -14,7 +14,6 @@ public class audio{
       clip.open(AudioSystem.getAudioInputStream(new File(filename)));
       clip.start();
       wav=clip;
-      
     }
     catch (Exception exc)
     {
@@ -39,9 +38,11 @@ public class audio{
       exc.printStackTrace(System.out);
     }return wav;
   }
+  
   public static boolean silence(){
     return silence;
   }
+  
   public static void stop(Clip wav){
     wav.stop();
     silence=true;

@@ -26,15 +26,10 @@ public class player{
   }
   
   public void regen(){
-    if(hp>0.85){
+    if(hp>0.85)
       hp=1;
-      h=1;
-    }
-    else{
-      h+=0.15;
-      hp+=0.15;
-    }
-    
+    else
+      hp+=0.15; 
   }
   
   public int bulletAmount(){

@@ -46,9 +46,10 @@ public class lazerEye{
           invaders[i][j].drop(level*0.0015);
           if(display.crash(player1.coord, invaders[i][j].drop, 1, true)){
             player1.hp-=(1-Math.abs(player1.coord[0]-invaders[i][j].drop[0]))/1.5;
-            invaders[i][j].drop[1]= -3;
-            
-          }}}
+            invaders[i][j].drop[1]= -3;  
+          }
+        }
+      }
       Octopi.turn();
       
       //player 1
@@ -91,30 +92,39 @@ public class lazerEye{
         squid.coord[0]=-1;
         player1.regen();
       }
+      
+      for(int k=0; k<player1.bulletAmount(); k++)
+        if(display.crash(player1.getBullet(k), squid.coord, 0.5, !squid.dead)){
+        squid.coord[0]=-1;
+        squid.dead=true;
+        player1.loseBullet(k);
+        player1.kills++;
+      }
+      
       if(display.crash(player1.coord, squid.coord, 1.5, !squid.dead)){
         player1.hp-=0.6;
         squid.coord[0]=-1;
         squid.dead=true;
       }
-
-        
-        //boss
-        neptune.move();
-        neptune.draw(); 
-        neptune.bars();
-        if(neptune.open())
-          squid.reset(neptune.coord);   
-        
-        if(neptune.vulnerable() && player1.l && Math.abs(neptune.coord[0]-player1.coord[0])<0.7){
-          neptune.hp-=0.35;
-          player1.kills+=3;
-        }
-        
-        StdDraw.setPenColor(255, 255, 255);     
-        StdDraw.text(5, 9.7, "score " + (startMenu.score[0] + player1.score()));      
-        if(StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) display.pause(player1.shots, player1.kills, 0);
-        StdDraw.show(30); 
+      
+      
+      //boss
+      neptune.move();
+      neptune.draw(); 
+      neptune.bars();
+      if(neptune.open())
+        squid.reset(neptune.coord);   
+      
+      if(neptune.vulnerable() && player1.l && Math.abs(neptune.coord[0]-player1.coord[0])<0.7){
+        neptune.hp-=0.35;
+        player1.kills+=3;
       }
-      return player1.score();
+      
+      StdDraw.setPenColor(255, 255, 255);     
+      StdDraw.text(5, 9.7, "score " + (startMenu.score[0] + player1.score()));      
+      if(StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) display.pause(player1.shots, player1.kills, 0);
+      StdDraw.show(30); 
     }
+    return player1.score();
   }
+}

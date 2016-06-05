@@ -27,6 +27,5 @@ public class squids extends Enemies{
       trajectory+=0.025;    
     coord[0]-=Math.sin(trajectory)*0.25;
     coord[1]-=Math.cos(trajectory)*0.25;
-    
   }
 }

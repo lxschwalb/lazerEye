@@ -6,6 +6,11 @@ public class Enemies{
   public boolean bottom(double[] player){
     if(dead==false && coord[1]<0.5) return true;
     if(display.crash(player, coord, 1.5, !dead)) return true;
-    else return false;  
+    else return false;
+  }
+  
+    public boolean bottom(){
+    if(dead==false && coord[1]<0.5) return true;
+    else return false;
   }
 }
