@@ -1,7 +1,7 @@
 import java.awt.event.KeyEvent;
 
 public class display{
-  
+
   public static void gameOver(){
     audio.play("game over.wav");
     StdDraw.clear(StdDraw.BLACK);
@@ -9,10 +9,10 @@ public class display{
     for(int i=0; i<255; i++){
       StdDraw.setPenColor(i, i, i);
       StdDraw.text(5, 5, "GAME OVER");
-      StdDraw.show(15);
+      StdDraw.show(30);
     }
   }
-  
+
   public static void victory(){
     audio.play("win.wav");
     StdDraw.clear(StdDraw.BLACK);
@@ -22,18 +22,18 @@ public class display{
       StdDraw.show(15);
     }
   }
-  
+
   public static void pause(int shots, int kills, int level){
-    
+
     if(StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)){
       boolean pause=true;
       while(StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)){
         StdDraw.show(30);
-      }      
+      }
       while(pause)
       {
         StdDraw.textLeft(0.5, 9.7, "paused");
-        
+
         if(level==0)
           StdDraw.textLeft(0.5, 9.3, "Boss Fight");
         else{
@@ -42,9 +42,9 @@ public class display{
           StdDraw.textLeft(0.5, 8.5, shots + " shots");
           StdDraw.textLeft(0.5, 8.1, "wasted shots: " + (shots - kills));
         }
-        
+
         StdDraw.textLeft(0.5, 7.5, "Press q to quit");
-        
+
         while(StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE))
           pause=false;
         if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){
@@ -55,7 +55,7 @@ public class display{
       }
     }
   }
-  
+
   public static boolean crash(double[] A, double[] B, double R, boolean exist){
     double r=Math.sqrt(Math.pow(A[0]-B[0],2)+Math.pow(A[1]-B[1],2));
     if(r<R && exist){
@@ -66,16 +66,16 @@ public class display{
       }return true;
     }else return false;
   }
-  
+
   public static void story(){
-    StdDraw.clear(StdDraw.BLACK);    
+    StdDraw.clear(StdDraw.BLACK);
     for(int i=0; i<255; i++){
       StdDraw.setPenColor(i, i, i);
       StdDraw.text(5, 5, "It has been nine years since the first octopus took to the sky.");
       StdDraw.show(15);
     }
     StdDraw.show(1000);
-    
+
     StdDraw.clear(StdDraw.BLACK);
     for(int i=0; i<200; i++){
       StdDraw.setPenColor(i, i, i);
@@ -84,14 +84,14 @@ public class display{
       StdDraw.show(15);
     }
     StdDraw.show(700);
-    
+
     for(int i=0; i<255; i+=2){
       StdDraw.setPenColor(i, i, i);
       StdDraw.text(5, 4, "But there is hope yet...");
       StdDraw.show(10);
     }
     StdDraw.show(1000);
-    
+
     StdDraw.clear(StdDraw.BLACK);
     for(int i=0; i<200; i++){
       StdDraw.setPenColor(i, i, i);
@@ -107,7 +107,7 @@ public class display{
     }
     StdDraw.show(1000);
   }
-  
+
   public static void bossStory(){
     StdDraw.clear(StdDraw.BLACK);
     for(int i=0; i<200; i++){
@@ -124,7 +124,7 @@ public class display{
     }
     StdDraw.show(1000);
   }
-  
+
   public static void control(){
     StdDraw.clear(StdDraw.BLACK);
     StdDraw.text(5, 7, "Rotate arm with A and S");
@@ -133,7 +133,7 @@ public class display{
     StdDraw.text(5, 4, "Shoot bullets with Spacebar");
     StdDraw.text(5, 3, "While pressing SHIFT Curve bullets with A and S");
   }
-  
+
   public static void sortScores(int[] scores){
     int hold;
     for(int i=0; i<scores.length; i++)
@@ -142,9 +142,9 @@ public class display{
       hold=scores[j-1];
       scores[j-1]=scores[j];
       scores[j]=hold;
-    }        
+    }
   }
-  
+
   public static void leaderBoard(int one, int two, int three){
     StdDraw.clear(StdDraw.BLACK);
     StdDraw.text(5, 7, "1.........."+three);
